@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.ricardococati.campanha.CampanhaSocioTorcedorApplicationTests
--------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.851 sec - in com.ricardococati.campanha.CampanhaSocioTorcedorApplicationTests

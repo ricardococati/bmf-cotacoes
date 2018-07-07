@@ -1,9 +1,0 @@
-server:
-  port: 8880
-
-spring:
-  profiles:
-    active: dev
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/db_bmf
