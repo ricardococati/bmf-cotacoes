@@ -1,13 +1,9 @@
-package com.ricardococati.repository;
+package com.ricardococati.mongodb.repository;
 
 import com.ricardococati.model.Campanha;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CampanhaRepository extends MongoRepository<Campanha, Integer> {
 

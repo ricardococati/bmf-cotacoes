@@ -13,7 +13,6 @@
     <module>bmf-cotacoes-application</module>
     <module>bmf-cotacoes-domain</module>
     <module>bmf-cotacoes-gateway</module>
-    <module>bmf-cotacoes-repository</module>
     <module>bmf-cotacoes-usecase</module>
   </modules>
 
@@ -47,11 +46,6 @@
       <dependency>
         <groupId>com.ricardococati</groupId>
         <artifactId>bmf-cotacoes-gateway</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.ricardococati</groupId>
-        <artifactId>bmf-cotacoes-repository</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

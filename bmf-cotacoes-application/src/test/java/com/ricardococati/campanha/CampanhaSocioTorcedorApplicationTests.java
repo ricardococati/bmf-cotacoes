@@ -6,12 +6,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 import com.ricardococati.config.ObjectMapperConfig;
 import com.ricardococati.model.Campanha;
-import com.ricardococati.service.CampanhaService;
+import com.ricardococati.usecase.CampanhaUsecase;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,10 +29,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CampanhaSocioTorcedorApplicationTests {
@@ -39,7 +37,7 @@ public class CampanhaSocioTorcedorApplicationTests {
 	protected WebApplicationContext context;
 
 	@MockBean
-	private CampanhaService campanhaService;
+	private CampanhaUsecase campanhaService;
 
 	private MockMvc mvc;
 

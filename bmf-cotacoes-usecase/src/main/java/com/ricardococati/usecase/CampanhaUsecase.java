@@ -1,27 +1,25 @@
-package com.ricardococati.service;
+package com.ricardococati.usecase;
 
 import com.ricardococati.model.Campanha;
-import com.ricardococati.repository.CampanhaRepository;
+import com.ricardococati.mongodb.repository.CampanhaRepository;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.transaction.Transactional;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 @Service
-public class CampanhaService implements Serializable {
+public class CampanhaUsecase implements Serializable {
 	
 	private static List<Campanha> campanhas = new ArrayList<>();
 
 	private CampanhaRepository campanhaRepository;
 
 	@Autowired
-	public CampanhaService(CampanhaRepository campanhaRepository) {
+	public CampanhaUsecase(CampanhaRepository campanhaRepository) {
 		this.campanhaRepository = campanhaRepository;
 	}
 

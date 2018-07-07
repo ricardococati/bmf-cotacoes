@@ -1,5 +1,6 @@
 package com.ricardococati.api;
 
+import com.ricardococati.usecase.CampanhaUsecase;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,25 +12,24 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import com.ricardococati.model.Campanha;
-import com.ricardococati.service.CampanhaService;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class CampanhaController {
 
-	private CampanhaService campanhaService;
+	private CampanhaUsecase campanhaUsecase;
 
 	@Autowired
-	public CampanhaController(CampanhaService campanhaService) {
-		this.campanhaService = campanhaService;
+	public CampanhaController(CampanhaUsecase campanhaService) {
+		this.campanhaUsecase = campanhaService;
 	}
 
 
 	@ApiOperation(value = "campanhas", notes = "Lista de Campanhas" , response = List.class)
     @RequestMapping(value="/campanhas" , method=RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Campanha>> listaCampanhas(@RequestParam(name = "ids", required = false) List<Integer> ids) {
-		List<Campanha> lista = campanhaService.findAll(ids);
+		List<Campanha> lista = campanhaUsecase.findAll(ids);
 		if (CollectionUtils.isEmpty(lista)){
 			return new ResponseEntity<>(lista, HttpStatus.NOT_FOUND);
 		}
@@ -38,7 +38,7 @@ public class CampanhaController {
 
 	@RequestMapping(path = "/campanhas/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Campanha> findById(@PathVariable("id") Integer id) {
-		Campanha campanha = this.campanhaService.findById(id);
+		Campanha campanha = this.campanhaUsecase.findById(id);
 		if (Objects.isNull(campanha)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -48,26 +48,26 @@ public class CampanhaController {
 	@ApiOperation(value = "campanhas", notes = "Adiciona Campanhas" , response = Campanha.class)
 	@RequestMapping(path = "/campanhas", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Campanha> addCampanha(@RequestBody Campanha campanha) {
-		return new ResponseEntity<>(this.campanhaService.save(campanha), HttpStatus.CREATED);
+		return new ResponseEntity<>(this.campanhaUsecase.save(campanha), HttpStatus.CREATED);
 	}
 
 	@ApiOperation(value = "campanhas", notes = "Remove Campanhas" , response = Void.class)
 	@RequestMapping(path = "/campanhas/{id}", method = RequestMethod.DELETE, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Void> removeCampanha(@PathVariable("id") Integer id) {
-		this.campanhaService.delete(id);
+		this.campanhaUsecase.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@ApiOperation(value = "campanhasll", notes = "Atualiza Campanhas" , response = Campanha.class)
 	@RequestMapping(path = "/campanhas", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Campanha> updateCampanha(@RequestBody Campanha campanha) {
-		Campanha campanhaUpdated = this.campanhaService.edit(campanha);
+		Campanha campanhaUpdated = this.campanhaUsecase.edit(campanha);
 		return new ResponseEntity<>(campanhaUpdated, HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(path = "/campanhas/time/{time}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<Campanha>> findAllCampanhasByTime(@PathVariable("time") String time) {
-		List<Campanha> campanhas = this.campanhaService.findAllCampanhasByTimeDoCoracao(time);
+		List<Campanha> campanhas = this.campanhaUsecase.findAllCampanhasByTimeDoCoracao(time);
 		if (CollectionUtils.isEmpty(campanhas)) {
 			return new ResponseEntity<>(campanhas, HttpStatus.NOT_FOUND);
 		}
