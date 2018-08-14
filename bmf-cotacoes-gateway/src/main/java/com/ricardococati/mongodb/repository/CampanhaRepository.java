@@ -14,4 +14,6 @@ public interface CampanhaRepository extends MongoRepository<Campanha, Integer> {
     List<Campanha> findAllCampanhaByDataVigenciaInicioAndDataVigenciaTerminoAndTimeDoCoracao(LocalDate dataVigenciaInicio, LocalDate dataVigenciaTermino, String timeDoCoracao);
 
     List<Campanha> findByIdIn(List<Integer> ids);
+
+    List<Campanha> findAllCampanhaByTimeDoCoracao(String timeDoCoracao);
 }

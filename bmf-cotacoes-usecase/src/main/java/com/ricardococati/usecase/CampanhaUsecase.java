@@ -56,7 +56,7 @@ public class CampanhaUsecase implements Serializable {
 	}
 
 	public List<Campanha> findAllCampanhasByTimeDoCoracao(String timeDoCoracao) {
-		return this.campanhaRepository.findAllCampanhaByDataVigenciaInicioAndTimeDoCoracao(LocalDate.now(), timeDoCoracao);
+		return this.campanhaRepository.findAllCampanhaByTimeDoCoracao(timeDoCoracao);
 	}
 
 	private List<Campanha> alterarCampanhas(List<Campanha> campanhas, Campanha campanha) {
